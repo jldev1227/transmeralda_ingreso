@@ -8,6 +8,7 @@ import {
   EyeIcon,
   EyeSlashIcon,
 } from "@heroicons/react/24/outline";
+import { isAxiosError } from "axios";
 
 import { authService } from "@/lib/axios";
 
@@ -40,7 +41,35 @@ const Home = () => {
         window.location.href = "http://midominio.local:5000";
       }
     } catch (err) {
-      setError("Credenciales inválidas. Por favor, intente nuevamente.");
+      // Manejo más específico de errores
+      if (err instanceof Error) {
+        // Usar el mensaje detallado que viene del servicio
+        setError(err.message);
+      } else if (isAxiosError(err)) {
+        // Manejar errores de red de Axios
+        if (!err.response) {
+          setError("Error de conexión. Verifica tu conexión a internet.");
+        } else {
+          const statusCode = err.response.status;
+          const errorMessage = err.response.data?.message;
+
+          if (statusCode === 401) {
+            setError(
+              errorMessage ||
+                "Credenciales inválidas. Por favor, intente nuevamente.",
+            );
+          } else if (statusCode === 429) {
+            setError("Demasiados intentos fallidos. Intenta más tarde.");
+          } else {
+            setError(
+              errorMessage || "Error en el servidor. Intenta más tarde.",
+            );
+          }
+        }
+      } else {
+        // Para cualquier otro tipo de error
+        setError("Error inesperado. Por favor, intenta nuevamente.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -165,7 +194,7 @@ const Home = () => {
             <div className="text-sm">
               <a
                 className="font-medium text-emerald-600 hover:text-emerald-500"
-                href="/forget-password"
+                href="/olvide-password"
               >
                 ¿Olvidaste tu contraseña?
               </a>
@@ -192,7 +221,7 @@ const Home = () => {
 
             <a
               className="ml-1 font-medium text-emerald-600 hover:text-emerald-500"
-              href="#"
+              href="mailto:soporte@transmeralda.com"
             >
               soporte@transmeralda.com
             </a>
