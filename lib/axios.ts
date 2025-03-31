@@ -55,6 +55,27 @@ export const authService = {
   getProfile: async () => {
     return apiClient.get("/api/usuarios/perfil");
   },
+  solicitarResetPassword: async (credentials: { correo: string }) => {
+    try {
+      const response = await apiClient.post(
+        "/api/usuarios/solicitar-cambio-password",
+        credentials,
+      );
+
+      return response.data;
+    } catch (error) {
+      // Manejo específico del error de login
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 401) {
+          // Error de credenciales específico
+          throw new Error(
+            error.response.data.message || "Usuario no existente",
+          );
+        }
+      }
+      throw error;
+    }
+  },
 };
 
 export default apiClient;
