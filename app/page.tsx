@@ -30,16 +30,7 @@ const Home = () => {
       // Si el login es exitoso, redirigir al usuario según sus permisos
       const { usuario } = response;
 
-      if (usuario.permisos.admin) {
-        window.location.href = process.env.NEXT_PUBLIC_ADMIN_URL || "http://midominio.local:3000/dashboard";
-      } else if (usuario.permisos.flota) {
-        window.location.href = process.env.NEXT_PUBLIC_FLOTA_URL || "http://flota.midominio.local:3000";
-      } else if (usuario.permisos.nomina) {
-        window.location.href = process.env.NEXT_PUBLIC_NOMINA_URL || "http://nomina.midominio.local:3000";
-      } else {
-        // Usuario sin permisos específicos
-        window.location.href = process.env.NEXT_PUBLIC_DEFAULT_URL || "http://midominio.local:5000";
-      }
+      if(usuario) return window.location.href = "/dashboard";
     } catch (err) {
       // Manejo más específico de errores
       if (err instanceof Error) {
