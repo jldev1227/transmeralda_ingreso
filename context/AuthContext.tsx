@@ -103,7 +103,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(userData);
       
       // Si el usuario está en la página de login y ya está autenticado, redirigir al dashboard
-      if (pathname === '/' || pathname === '/login') {
+      if (pathname === '/') {
         router.push('/dashboard');
       }
       
@@ -112,7 +112,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
       
       // Si el error es de autenticación y NO estamos ya en la página de login, redirigir al login
-      if (isAxiosError(err) && err.response?.status === 401 && pathname !== '/' && pathname !== '/login') {
+      if (isAxiosError(err) && err.response?.status === 401 && pathname !== '/' && pathname !== '/') {
         router.push("/");
       }
     } finally {
