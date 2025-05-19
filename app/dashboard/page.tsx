@@ -122,7 +122,7 @@ const Dashboard = () => {
                         title="Flota"
                         icon={<Truck size={22} />}
                         color="bg-emerald-600"
-                        available={user.role === 'admin' ? !!user.permisos.flota : !!user.permisos.flota || user.role === 'gestor_flota'}
+                        available={user.role === 'admin' ? !!user.permisos.gestor_flota : !!user.permisos.gestor_flota || user.role === 'gestor_flota'}
                         route={process.env.NEXT_PUBLIC_FLOTA_URL}
                     />
                     <SystemCard
