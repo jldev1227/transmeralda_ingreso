@@ -17,7 +17,7 @@ interface SystemCardProps {
 
 const SystemCard = ({ title, icon, color, available, route }: SystemCardProps) => {
     const handlePress = (route?: string) => {
-        if(route === undefined) return
+        if (!available || !route) return;
         window.open(route);
     }
 
@@ -104,35 +104,39 @@ const Dashboard = () => {
                         title="Nómina"
                         icon={<Calendar size={22} />}
                         color="bg-emerald-600"
-                        available={user.permisos.nomina || user.role === 'admin' || user.role === 'gestor_nomina'}
+                        available={user.role === 'admin' ? !!user.permisos.nomina : !!user.permisos.nomina || user.role === 'gestor_nomina'}
                         route={process.env.NEXT_PUBLIC_NOMINA_URL}
                     />
                     <SystemCard
                         title="Servicios"
                         icon={<FileText size={22} />}
                         color="bg-emerald-600"
-                        available={user.role === 'admin' || user.role === 'gestor_servicio'}
+                        available={
+                            user.role === 'admin'
+                                ? !!user.permisos.gestor_servicio || !!user.permisos.gestor_planillas
+                                : user.role === 'gestor_servicio' || user.role === 'gestor_planillas'
+                        }
                         route={process.env.NEXT_PUBLIC_SERVICIOS_URL}
                     />
                     <SystemCard
                         title="Flota"
                         icon={<Truck size={22} />}
                         color="bg-emerald-600"
-                        available={user.permisos.flota || user.role === 'admin' || user.role === 'gestor_flota'}
+                        available={user.role === 'admin' ? !!user.permisos.flota : !!user.permisos.flota || user.role === 'gestor_flota'}
                         route={process.env.NEXT_PUBLIC_FLOTA_URL}
                     />
                     <SystemCard
                         title="Empresas"
                         icon={<Building2 size={22} />}
                         color="bg-emerald-600"
-                        available={user.permisos.admin || user.role === 'admin'}
+                        available={user.role === 'admin' ? !!user.permisos.admin : !!user.permisos.admin}
                         route={process.env.NEXT_PUBLIC_EMPRESAS_URL}
                     />
                     <SystemCard
                         title="Conductores"
                         icon={<Users size={22} />}
                         color="bg-emerald-600"
-                        available={user.permisos.flota || user.role === 'admin' || user.role === 'gestor_flota'}
+                        available={user.role === 'admin' ? !!user.permisos.flota : !!user.permisos.flota || user.role === 'gestor_flota'}
                         route={process.env.NEXT_PUBLIC_CONDUCTORES_URL}
                     />
                 </div>
