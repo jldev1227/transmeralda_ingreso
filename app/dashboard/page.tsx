@@ -85,12 +85,12 @@ const Dashboard = () => {
                             {user.nombre.split(' ').map(name => name[0]).join('')}
                         </div>
                         <div>
-                            <h2 className="text-xl font-bold text-emerald-700">{user.nombre.split(' ')[0]}</h2>
+                            <h2 className="text-xl font-bold text-emerald-700">{user.nombre}</h2>
                             <p className="text-sm text-gray-500">{user.correo}</p>
                             <p className="text-xs text-gray-400 mt-1">Último acceso: <span className="text-emerald-600">{formatDate(user.ultimo_acceso)}</span></p>
                         </div>
                     </div>
-                    <Button onPress={logout} variant='flat' color='danger' radius='sm' size='sm' className='w-full sm:w-auto p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200'>
+                    <Button onPress={logout} variant='flat' color='danger' radius='sm' size='sm' className='w-full sm:w-auto p-2 bg-emerald-50 hover:bg-danger-100 text-danger-700 border border-danger-200'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 mr-1">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
                         </svg>
