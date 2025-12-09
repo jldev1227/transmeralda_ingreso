@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { 
     Calendar, Truck, Users, Building2, FileText, ChevronRight, 
-    Activity, Clock, Gauge, UserCircle 
+    Activity, Clock, Clipboard, UserCircle 
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@heroui/button';
@@ -341,9 +341,9 @@ const Dashboard = () => {
                             route={process.env.NEXT_PUBLIC_CONDUCTORES_URL}
                         />
                         <SystemCard
-                            title="Kilometraje"
-                            description="Control de kilometraje de vehículos"
-                            icon={<Gauge size={24} />}
+                            title="Planillas de Servicio"
+                            description="Control y registro de planillas"
+                            icon={<Clipboard size={24} />}
                             color="bg-gradient-to-br from-amber-500 to-orange-600"
                             available={user.role === 'admin' || user.role === 'kilometraje' || user.permisos.kilometraje === true}
                             route={process.env.NEXT_PUBLIC_SERVICIOS_URL}
