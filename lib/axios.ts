@@ -21,7 +21,7 @@ apiClient.interceptors.response.use(
         error.response.data?.message === "Credenciales inválidas";
 
       if (!isLoginError && !window.location.href.includes("login")) {
-        window.location.href = "http://midominio.local:5000";
+        window.location.href = "http://midominio.local:4000";
       }
     }
 

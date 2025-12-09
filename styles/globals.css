@@ -2,6 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Configuración global de tipografía */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Variables CSS para la paleta emerald */
+:root {
+  --emerald-500: #10B981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --emerald-800: #065F46;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.18);
+}
+
+/* Efecto glassmorphism estilo Apple */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Animaciones suaves tipo Apple */
+.apple-transition {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-hover:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Sombras suaves */
+.soft-shadow {
+  box-shadow: 0 4px 24px rgba(16, 185, 129, 0.08);
+}
+
+.emerald-glow {
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.1), 
+              0 2px 8px rgba(16, 185, 129, 0.15),
+              0 8px 24px rgba(16, 185, 129, 0.1);
+}
+
+/* Efectos de focus para inputs */
+.input-glow:focus {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06), 
+              0 0 0 3px rgba(16, 185, 129, 0.15);
+  outline: none;
+}
+
 .password-input::-ms-reveal {
   display: none;
 }
@@ -15,3 +75,40 @@
   width: 0;
   margin: 0;
 }
+
+/* Animaciones de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.5);
+}
+

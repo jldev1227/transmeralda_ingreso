@@ -12,11 +12,12 @@ export interface User {
   nombre: string;
   correo: string;
   telefono?: string;
-  role: "admin" | "gestor_servicio" | "gestor_planillas" | "liquidador" | "facturador" | "aprobador" | "gestor_flota" | "gestor_nomina" | "usuario";
+  role: "admin" | "gestor_servicio" | "gestor_planillas" | "liquidador" | "facturador" | "aprobador" | "gestor_flota" | "gestor_nomina" | "kilometraje" | "usuario";
   permisos: {
     flota: boolean;
     nomina: boolean;
     admin: boolean;
+    kilometraje?: boolean;
     [key: string]: boolean | undefined;
   };
   ultimo_acceso?: string;
