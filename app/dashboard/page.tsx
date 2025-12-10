@@ -346,7 +346,7 @@ const Dashboard = () => {
                             icon={<Clipboard size={24} />}
                             color="bg-gradient-to-br from-amber-500 to-orange-600"
                             available={user.role === 'admin' || user.role === 'kilometraje' || user.permisos.kilometraje === true}
-                            route={process.env.NEXT_PUBLIC_SERVICIOS_URL}
+                            route={process.env.NEXT_PUBLIC_RECARGOS_URL}
                         />
                     </div>
                 </div>
