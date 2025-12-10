@@ -300,7 +300,7 @@ const Dashboard = () => {
                             description="Gestión de nóminas y pagos"
                             icon={<Calendar size={24} />}
                             color="bg-gradient-to-br from-emerald-400 to-emerald-600"
-                            available={user.role === 'admin' || user.permisos.nomina || user.role === 'gestor_nomina'}
+                            available={user.permisos.admin || user.permisos.nomina || user.role === 'gestor_nomina'}
                             route={process.env.NEXT_PUBLIC_NOMINA_URL}
                         />
                         <SystemCard
@@ -309,10 +309,9 @@ const Dashboard = () => {
                             icon={<FileText size={24} />}
                             color="bg-gradient-to-br from-teal-400 to-emerald-600"
                             available={
-                                user.role === 'admin' ||
-                                user.role === 'gestor_servicio' ||
-                                user.role === 'gestor_planillas' ||
-                                user.role === 'kilometraje'
+                                user.permisos.admin ||
+                                user.permisos.gestor_servicio ||
+                                user.role === 'gestor_servicio'
                             }
                             route={process.env.NEXT_PUBLIC_SERVICIOS_URL}
                         />
@@ -321,7 +320,7 @@ const Dashboard = () => {
                             description="Administración de vehículos"
                             icon={<Truck size={24} />}
                             color="bg-gradient-to-br from-green-400 to-emerald-600"
-                            available={user.role === 'admin' || user.permisos.flota || user.role === 'gestor_flota'}
+                            available={user.permisos.admin || user.permisos.flota || user.role === 'gestor_flota'}
                             route={process.env.NEXT_PUBLIC_FLOTA_URL}
                         />
                         <SystemCard
@@ -329,7 +328,7 @@ const Dashboard = () => {
                             description="Gestión de empresas y clientes"
                             icon={<Building2 size={24} />}
                             color="bg-gradient-to-br from-emerald-500 to-teal-600"
-                            available={user.role === 'admin' || user.permisos.admin}
+                            available={user.permisos.admin}
                             route={process.env.NEXT_PUBLIC_EMPRESAS_URL}
                         />
                         <SystemCard
@@ -337,7 +336,7 @@ const Dashboard = () => {
                             description="Base de datos de conductores"
                             icon={<Users size={24} />}
                             color="bg-gradient-to-br from-emerald-400 to-green-500"
-                            available={user.role === 'admin' || user.permisos.flota || user.role === 'gestor_flota'}
+                            available={user.permisos.admin || user.permisos.flota || user.role === 'gestor_flota'}
                             route={process.env.NEXT_PUBLIC_CONDUCTORES_URL}
                         />
                         <SystemCard
@@ -345,7 +344,7 @@ const Dashboard = () => {
                             description="Control y registro de planillas"
                             icon={<Clipboard size={24} />}
                             color="bg-gradient-to-br from-amber-500 to-orange-600"
-                            available={user.role === 'admin' || user.role === 'kilometraje' || user.permisos.kilometraje === true}
+                            available={user.permisos.admin || user.permisos.kilometraje === true || user.role === 'kilometraje'}
                             route={process.env.NEXT_PUBLIC_RECARGOS_URL}
                         />
                     </div>
